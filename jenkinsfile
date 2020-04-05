@@ -1,0 +1,30 @@
+pipeline {
+    agent any 
+    stages {
+        stage ("1. Build the dockerfile") {
+            steps {
+                sh "yum install docker -y"
+    
+                sh "service docker start"
+    
+                sh "docker build -t decalrative-image /home/ec2-user"
+            }
+        }
+        
+        stage ("2. Run the container") {
+            steps {
+                sh "docker run -dit -p 9191:80 --name decalrative-container decalrative-image "
+            }
+        }
+        
+        stage ("3. Push the image to dockerhub") {
+            steps {
+                sh "docker tag decalrative-image dgruploads/decalrative-image"
+    
+                sh " docker login --username dgruploads --password 9886360651Dd"
+        
+                sh "docker push dgruploads/decalrative-image"
+            }
+        }
+    }
+}
