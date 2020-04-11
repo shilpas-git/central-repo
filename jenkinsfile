@@ -1,0 +1,4 @@
+node {
+stage "Print the contents of echo"
+sh "echo "Creating a new job"
+}
