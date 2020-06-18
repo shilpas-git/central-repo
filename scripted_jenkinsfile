@@ -7,10 +7,10 @@ node
         sh "docker build -t scripted-image /home/ec2-user"
         
         stage "2. Run the container"
-        sh "docker run -dit -p 9191:80 --name scripted-container decalrative-image"
+        sh "docker run -dit -p 9191:80 --name scripted-container scripted-image"
         
         stage "3. Push the image to dockerhub"
-        sh "docker tag decalrative-image dgruploads/scripted-image"
+        sh "docker tag scripted-image dgruploads/scripted-image"
         sh "docker login --username dgruploads --password 9886360651Dd"
         sh "docker push dgruploads/scripted-image"
          
