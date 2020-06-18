@@ -7,23 +7,23 @@ pipeline {
     
                 sh "service docker start"
     
-                sh "docker build -t decalrative-image /home/ec2-user"
+                sh "docker build -t multibranch-image /home/ec2-user"
             }
         }
         
         stage ("2. Run the container") {
             steps {
-                sh "docker run -dit -p 9090:80 --name decalrative-container decalrative-image "
+                sh "docker run -dit -p 8181:80 --name multibranch-container multibranch-image "
             }
         }
         
         stage ("3. Push the image to dockerhub") {
             steps {
-                sh "docker tag decalrative-image dgruploads/decalrative-image"
+                sh "docker tag multibranch-image dgruploads/multibranch-image"
     
                 sh " docker login --username dgruploads --password 9886360651Dd"
         
-                sh "docker push dgruploads/decalrative-image"
+                sh "docker push dgruploads/multibranch-image"
             }
         }
     }
