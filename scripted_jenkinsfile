@@ -2,7 +2,7 @@
 node
 {
         stage "1. Build the dockerfile"
-        sh "yum install docker -y
+        sh "yum install docker -y"
     	  sh "service docker start"
         sh "docker build -t scripted-image /home/ec2-user"
         
