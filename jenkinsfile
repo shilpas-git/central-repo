@@ -13,7 +13,7 @@ pipeline {
         
         stage ("2. Run the container") {
             steps {
-                sh "docker run -dit -p 9191:80 --name decalrative-container decalrative-image "
+                sh "docker run -dit -p 9090:80 --name decalrative-container decalrative-image "
             }
         }
         
